@@ -1,0 +1,82 @@
+.core_index {
+  background-color: $header-background;
+}
+
+.container.main.index {
+  background-color: $header-background;
+
+  .welcome_msg {
+    h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .logo_index {
+        height: 130px;
+      }
+      span {
+        padding-top: 15px;
+      }
+    }
+  }
+
+  .section_content {
+    display: flex;
+    justify-content: center;
+    a {
+      text-decoration: none;
+    }
+    section {
+      border: 1px solid black;
+      height: 150px;
+      width: 180px;
+      padding: 20px;
+      margin: 0 20px;
+      position: relative;
+      &.coming-soon {
+        .coming-soon_msg {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 60px;
+          line-height: 60px;
+          width: 100%;
+          background-color: rgba(0,0,0,0.8);
+          text-shadow: 0 0 10px #d47979;
+          p {
+            @include text-linear-gradient($colour-left, $colour-right);
+            margin: 0;
+          }
+        }
+      }
+      &.available.teddy-bear {
+        background-image: url("../images/teddy_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      &.coming-soon.camera {
+        background-image: url("../images/vcam_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      &.coming-soon.furniture {
+        background-image: url("../images/oak_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .product_name {
+        color: white;
+        position: absolute;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 0 0 10px black;
+        width: 100%;
+        left: 0;
+        top: -16px;
+        height: 30px;
+        line-height: 35px;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 75%;
+  margin: auto;
+}
+
+.container.main {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.product_color {
+  margin-top: 5px;
+  border: 1px solid black;
+  position: relative;
+  display: inline-block;
+  margin-right: 5px;
+  width: 22px;
+  height: 22px;
+  &.tan {
+    background-color: tan;
+  }
+  &.chocolate {
+    background-color: chocolate;
+  }
+  &.black {
+    background-color: black;
+  }
+  &.white {
+    background-color: white;
+  }
+  &.pale.brown {
+    background-color: sandybrown;
+  }
+  &.dark.brown {
+    background-color: saddlebrown;
+  }
+  &.brown {
+    background-color: brown;
+  }
+  &.blue {
+    background-color: steelblue;
+  }
+  &.pink {
+    background-color: pink;
+  }
+  &.beige {
+    background-color: beige;
+  }
+}
+
+.button_product {
+  padding: 5px 10px;
+  width: fit-content;
+  margin: auto !important;
+  border-radius: 5px;
+  border: 1px black solid;
+  &:hover {
+    @include text-linear-gradient($colour-left, $colour-right);
+    box-shadow: 4px 0 10px 0 $colour-right, -4px -3px 10px 0 $colour-left;
+  }
+}

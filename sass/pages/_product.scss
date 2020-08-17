@@ -1,0 +1,36 @@
+.container.main.page_product {
+  .border_product {
+    display: flex;
+    .image_product, .info_product {
+      width: 50%;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: 160px;
+      border: solid 1px;
+      margin-bottom: 25px;
+      &:hover .dropdown_content {
+        display: block;
+      }
+      .dropdown_cursor {
+        cursor: pointer;
+      }
+      .dropdown_content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        width: 120px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+        text-align: left;
+        padding: 10px 20px;
+
+        span:nth-child(2):hover {
+          @include text-linear-gradient($colour-left, $colour-right);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
