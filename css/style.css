@@ -12,6 +12,10 @@ body {
   text-align: center;
 }
 
+.product_color_text {
+  vertical-align: super;
+}
+
 .product_color {
   margin-top: 5px;
   border: 1px solid black;
@@ -82,6 +86,12 @@ body {
 
 .catalogue_title {
   font-family: "Kalam", cursive;
+}
+
+.price_product {
+  font-family: "Kalam", cursive;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 header {
@@ -271,22 +281,35 @@ header nav .dropdown .dropdown_content p:hover {
 
 .container.main.page_product .border_product {
   display: flex;
+  justify-content: center;
 }
-.container.main.page_product .border_product .image_product, .container.main.page_product .border_product .info_product {
-  width: 50%;
+.container.main.page_product .border_product .image_product {
+  width: 500px;
+  box-shadow: 0 1px 6px 0 black;
+}
+.container.main.page_product .border_product .info_product {
+  width: 40%;
+}
+.container.main.page_product .border_product .description_product {
+  padding: 0 60px;
+}
+.container.main.page_product .border_product .price_product {
+  text-shadow: 1px 2px 0 #F3E9F1;
+  margin-bottom: 0;
 }
 .container.main.page_product .border_product .dropdown {
   position: relative;
   display: inline-block;
   width: 160px;
   border: solid 1px;
-  margin-bottom: 25px;
+  margin: 15px 0 30px;
 }
 .container.main.page_product .border_product .dropdown:hover .dropdown_content {
   display: block;
 }
 .container.main.page_product .border_product .dropdown .dropdown_cursor {
   cursor: pointer;
+  margin: 15px 0;
 }
 .container.main.page_product .border_product .dropdown .dropdown_content {
   display: none;
@@ -297,8 +320,12 @@ header nav .dropdown .dropdown_content p:hover {
   z-index: 1;
   text-align: left;
   padding: 10px 20px;
+  top: 49px;
 }
-.container.main.page_product .border_product .dropdown .dropdown_content span:nth-child(2):hover {
+.container.main.page_product .border_product .dropdown .dropdown_content.content_product > div {
+  cursor: pointer;
+}
+.container.main.page_product .border_product .dropdown .dropdown_content.content_product > div:hover {
   background: -webkit-linear-gradient(left, #E68A06 0%, #9763F2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
