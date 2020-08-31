@@ -10,12 +10,24 @@
       width: 40%;
     }
 
+    .add-cart {
+      cursor: pointer;
+      > a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
     .description_product {
       padding: 0 60px;
     }
     .price_product {
       text-shadow: 1px 2px 0 $header-background;
       margin-bottom: 0;
+    }
+
+    .dropdown_product {
+      cursor: pointer;
     }
     .dropdown {
       position: relative;

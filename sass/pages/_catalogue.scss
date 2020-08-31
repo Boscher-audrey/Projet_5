@@ -33,6 +33,9 @@
         justify-content: center;
         width: 200px;
         color: black;
+        .price_product {
+          line-height: 18px;
+        }
         > p {
           margin: 3px 0;
         }

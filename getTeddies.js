@@ -1,25 +1,26 @@
 $(document).ready(function () {
-    // Exécute un appel AJAX GET
-    // Prend en paramètres l'URL cible et la fonction callback appelée en cas de succès
-    function ajaxGet(url, callback) {
-        var req = new XMLHttpRequest();
-        req.open("GET", url);
-        req.addEventListener("load", function () {
-            if (req.status >= 200 && req.status < 400) {
-                // Appelle la fonction callback en lui passant la réponse de la requête
-                callback(req.responseText);
-            } else {
-                console.error(req.status + " " + req.statusText + " " + url);
-            }
-        });
-        req.addEventListener("error", function () {
-            console.error("Erreur réseau avec l'URL " + url);
-        });
-        req.send(null);
+    function ajaxGet(url) {
+        return new Promise(function(resolve, reject) {
+            var req = new XMLHttpRequest();
+            req.open("GET", url);
+            req.addEventListener("load", function () {
+                if (req.status >= 200 && req.status < 400) {
+                    resolve(req.responseText);
+                } else {
+                    reject(req.status);
+                    console.error(req.status + " " + req.statusText + " " + url);
+                }
+            });
+            req.addEventListener("error", function () {
+                console.error("Erreur réseau avec l'URL " + url);
+            });
+            req.send(null);
+        })
     }
 
 
-    ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
+
+    ajaxGet("http://localhost:3000/api/teddies").then(function (reponse) {
         var IDs = JSON.parse(reponse);
         IDs.forEach(function (ID) {
             // Page catalogue START
@@ -56,7 +57,7 @@ $(document).ready(function () {
                 for (var i = 0; i < ID.colors.length; i++) {
                     $('.content_product').append('<div class="dropdown_color"><span class="product_color ' + colors[i] + '" title="' + colors[i] + '"></span><span class="product_color_text">' + colors[i] + '</span></div>');
                 }
-                $('.info_product').append('<p class="button_product add-cart">Ajouter au panier</p>');
+                $('.info_product').append('<p class="button_product add-cart"><a class="set-cart-info" href="panier.html">Ajouter au panier</a></p>');
                 // Page product END
                 $('.dropdown_color').click(function () {
                     var newContent = $(this).find('.product_color_text').text();
@@ -65,6 +66,8 @@ $(document).ready(function () {
                 });
             }
         }); //end foreach
+    }).catch(function(err) {
+        $('.container.main').load('error.html');
     }); // end ajax
 
     function getNumberWithCommas(number) {
