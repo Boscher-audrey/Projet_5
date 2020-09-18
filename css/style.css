@@ -84,7 +84,7 @@ body {
   text-transform: uppercase;
 }
 
-.catalogue_title {
+.catalogue_title, .panier_title {
   font-family: "Kalam", cursive;
 }
 
@@ -92,6 +92,10 @@ body {
   font-family: "Kalam", cursive;
   font-size: 25px;
   font-weight: 600;
+}
+
+.panier_content th {
+  font-family: "Kalam", cursive;
 }
 
 header {
@@ -343,6 +347,11 @@ header nav .dropdown .dropdown_content p:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
+}
+
+.page_panier .panier_content {
+  width: 80%;
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

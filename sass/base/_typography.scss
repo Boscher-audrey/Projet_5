@@ -5,6 +5,7 @@
       font-size: 3rem;
     }
   }
+
   .product_name {
     font-family: 'Kalam', cursive;
     text-transform: uppercase;
@@ -16,11 +17,16 @@
   text-transform: uppercase;
 }
 
-.catalogue_title {
+.catalogue_title, .panier_title {
   font-family: 'Kalam', cursive;
 }
+
 .price_product {
   font-family: 'Kalam', cursive;
   font-size: 25px;
   font-weight: 600;
+}
+
+.panier_content th {
+  font-family: 'Kalam', cursive;
 }

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     function ajaxGet(url) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             var req = new XMLHttpRequest();
             req.open("GET", url);
             req.addEventListener("load", function () {
@@ -18,7 +18,7 @@ $(document).ready(function () {
         })
     }
 
-
+    var total_price_products = 0;
 
     ajaxGet("http://localhost:3000/api/teddies").then(function (reponse) {
         var IDs = JSON.parse(reponse);
@@ -65,8 +65,34 @@ $(document).ready(function () {
                     $('.dropdown_text').css('margin', '7px 0')
                 });
             }
+            // Page product END
+
+            // Page panier START
+            var cart_products = localStorage.getItem('teddy_id');
+            var split_products = cart_products.split(',');
+            var count_products = countProducts(split_products, ID._id);
+
+
+            if (count_products > 0) {
+                var price_products = price * count_products;
+                $('.panier_content').append('<tr class="product_in_cart ' + ID._id + '"></tr>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_image"><img style="width: 60px;" src="' + ID.imageUrl + '"></td>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_name"><p>' + ID.name + '</p></td>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_price"><p>' + price + '€</p></td>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_quantity"><p>' + count_products + '</p></td>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_totalprice"><p>' + price_products + '.00€</p></td>');
+                $('.product_in_cart' + '.' + ID._id).append('<td class="product_in_cart_changeqty"><button onClick="window.location.reload()" class="add_qty ' + ID._id + '">+</button><button onClick="window.location.reload()" class="remove_qty ' + ID._id + '">-</button></td>');
+
+                total_price_products += price_products;
+            }
         }); //end foreach
-    }).catch(function(err) {
+
+        $('.panier_content').append('<tr class="total_in_cart"></tr>');
+        $('.total_in_cart').append('<td class="total_in_cart_price"><p>Prix total : ' + total_price_products + '.00€</p></td>');
+
+
+
+    }).catch(function (err) {
         $('.container.main').load('error.html');
     }); // end ajax
 
@@ -74,5 +100,39 @@ $(document).ready(function () {
         return number.toString().replace(/\B(?=(\d{2})+(?!\d))/g, ".");
     }
 
+    function countProducts(array, value) {
+        var count = 0;
+        array.forEach((v) => (v === value && count++));
+        return count;
+    }
 
+});
+
+
+$(document).on('click', '.add_qty', function () {
+    // We retrieve the product id which is stored in the class
+    var split_class = this.className.split(' ');
+    var this_id = split_class[1];
+    var cartItems = localStorage.getItem('teddy_id');
+    cartItems = cartItems ? cartItems.split(',') : [];
+    cartItems.push(this_id);
+    localStorage.setItem('teddy_id', cartItems.toString());
+});
+
+$(document).on('click', '.remove_qty', function () {
+    // We retrieve the product id which is stored in the class
+    var split_class = this.className.split(' ');
+    var this_id = split_class[1];
+    var cartItems = localStorage.getItem('teddy_id');
+    cartItems = cartItems ? cartItems.split(',') : [];
+
+    // This is the part that retrieve the product by his ID and delete all product with this specific ID
+    cartItems.find( ( item, i ) => {
+        if ( item === this_id ) {
+            cartItems.splice( i, 1 );
+            return true;
+        }
+        return false;
+    });
+    localStorage.setItem('teddy_id', cartItems.toString());
 });

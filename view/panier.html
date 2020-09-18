@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="../getTeddies.js"></script>
     <script type="text/javascript" src="../saveDatas.js"></script>
+    <script type="text/javascript" src="../formValidate.js"></script>
 
     <title>Panier</title>
 </head>
@@ -42,6 +43,59 @@
 </header>
 
 <main class="container main page_panier">
+    <h1 class="panier_title">Panier</h1>
+    <table class="panier_content">
+        <tr>
+            <th colspan="2">Article</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Prix total</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </table>
+
+    <form class="form-order" method="post" id="formValidate" onsubmit="return formValidate();">
+        <fieldset>
+            <legend><h1 class="panier_title">Passer la commande</h1></legend>
+            <p>
+                <input type="radio" name="genre" id="genre_mme" >
+                <label for="genre_mme">Mme</label>
+                <input type="radio" name="genre" id="genre_mr" >
+                <label for="genre_mr">Mr</label>
+            </p>
+            <p>
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname" autocapitalize="words" >
+                <span class="note">(ex : Dupont)</span>
+            </p>
+            <p>
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname" autocapitalize="words" >
+                <span class="note">(ex : Jean)</span>
+            </p>
+            <p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" >
+                <span class="note">(ex : exemple@gmail.com)</span>
+            </p>
+            <p>
+                <label for="address">Adresse</label>
+                <input type="text" name="address" id="address" >
+                <span class="note">(N°, rue, allée, avenue, boulevard)</span>
+            </p>
+            <p>
+                <label for="city">Ville</label>
+                <input type="text" name="city" id="city" autocapitalize="words" >
+                <span class="note">(ex : Paris)</span>
+            </p>
+            <p>
+                <label for="zip">Code postal</label>
+                <input type="text" pattern="[0-9]{5}" minlength="5" maxlength="5" name="zip" id="zip" >
+                <span class="note">(ex : 75015)</span>
+            </p>
+            <button class="submit">Soumettre les informations</button>
+        </fieldset>
+    </form>
 
 </main>
 

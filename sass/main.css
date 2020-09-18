@@ -64,13 +64,16 @@ body {
   font-family: 'Kalam', cursive;
   text-transform: uppercase; }
 
-.catalogue_title {
+.catalogue_title, .panier_title {
   font-family: 'Kalam', cursive; }
 
 .price_product {
   font-family: 'Kalam', cursive;
   font-size: 25px;
   font-weight: 600; }
+
+.panier_content th {
+  font-family: 'Kalam', cursive; }
 
 header {
   background-color: #F3E9F1;
@@ -271,5 +274,16 @@ header {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           font-weight: 600; }
+
+.page_panier .panier_content {
+  width: 80%;
+  margin: auto; }
+
+/** Formulaire de commande **/
+input:invalid {
+  border: 2px dashed red; }
+
+input:valid {
+  border: 1px solid black; }
 
 /*# sourceMappingURL=main.css.map */

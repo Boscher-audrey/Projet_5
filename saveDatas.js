@@ -1,15 +1,15 @@
 $(document).on('click', '.set-cart-info', function () {
-    // On récupère l'id du produit qui est stockée dans l'url
+    // We retrieve the product id which is stored in the url
     var url_id = window.location.search;
     var id = url_id.split('?id=').pop();
-
-    // On récupère les données du localStorage
+    // We retrieve the data from the localStorage
     var cartItems = localStorage.getItem('teddy_id');
-    // S'il n'y a pas de données, on créer un tableau
+    // If there is no data, we create an array
     cartItems = cartItems ? cartItems.split(',') : [];
-    // On ajoute les nouvelles données au tableau
+    // Add the new data to the array
     cartItems.push(id);
-    // On sauvegarde les données dans le localStorage
+    // We save the data in the localStorage
     localStorage.setItem('teddy_id', cartItems.toString());
-    console.log(localStorage.getItem('teddy_id'));
 });
+
+
