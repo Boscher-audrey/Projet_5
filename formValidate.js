@@ -1,39 +1,52 @@
 function formValidate() {
-    var lastname = document.getElementById("lastname").value;
-    var firstname = document.getElementById("lastname").value;
-    var email = document.getElementById("lastname").value;
-    var address = document.getElementById("lastname").value;
-    var city = document.getElementById("lastname").value;
-    var zip = document.getElementById("lastname").value;
+    var lastname = document.getElementById("lastname");
+    var firstname = document.getElementById("firstname");
+    var email = document.getElementById("email");
+    var address = document.getElementById("address");
+    var city = document.getElementById("city");
+    var zip = document.getElementById("zip");
 
-    // remplacer avec switch case
+    var regex_string = /^(([\p{L}]+['-]?[ ]?|[\p{L}]+['-]?)+)$/u;
+    var regex_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+?\.[a-zA-Z0-9-]+$/;
+    var regex_address = /(\d+)?\,?\s?(bis|ter|quater)?\,?\s?(rue|avenue|boulevard|r|av|ave|bd|bvd|square|sente|impasse|cours|esplanade|allée|résidence|parc|rond-point|chemin|côte|place|cité|quai|passage|lôtissement|hameau)?\s([a-zA-Zà-ÿ0-9\s]{2,})+$/gi;
+    var regex_zip = /^(([0-8][0-9])|(9[0-8]))[0-9]{3}$/;
 
-    console.log("lastname =" + lastname);
-    if (typeof lastname != 'string') {
-        alert("Veuillez saisir votre nom.");
+
+    if (regex_string.test(lastname.value) === false) {
+        alert("Veuillez saisir un nom dans un format valide.");
         lastname.focus();
         return false;
-    } else if (firstname === "") {
-        alert("Veuillez saisir votre prénom.");
-        lastname.focus();
+    } else if (regex_string.test(firstname.value) === false) {
+        alert("Veuillez saisir un prénom dans un format valide.");
+        firstname.focus();
         return false;
-    } else if (email === "") {
-        alert("Veuillez saisir votre email.");
-        lastname.focus();
+    } else if (regex_email.test(email.value) === false) {
+        alert("Veuillez saisir un e-mail dans un format valide.");
+        email.focus();
         return false;
-    } else if (address === "") {
-        alert("Veuillez saisir votre adresse.");
-        lastname.focus();
+    } else if (regex_address.test(address.value) === false) {
+        alert("Veuillez saisir une adresse postale dans un format valide.");
+        address.focus();
         return false;
-    } else if (city === "") {
-        alert("Veuillez saisir votre ville.");
-        lastname.focus();
+    } else if (regex_string.test(city.value) === false) {
+        alert("Veuillez saisir un nom de ville dans un format valide.");
+        city.focus();
         return false;
-    } else if (zip === "") {
-        alert("Veuillez saisir votre code postal.");
-        lastname.focus();
+    } else if (regex_zip.test(zip.value) === false) {
+        alert("Veuillez saisir un code postal dans un format valide.");
+        zip.focus();
         return false;
     } else {
+        var contact = {
+            lastname:lastname.value,
+            firstname:firstname.value,
+            email:email.value,
+            address:address.value,
+            city:city.value,
+            zip:zip.value
+        };
+        var obj = JSON.stringify(contact);
+        sessionStorage.setItem('contact', obj);
         return true;
     }
 
