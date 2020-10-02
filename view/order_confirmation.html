@@ -42,10 +42,41 @@
     </div>
 </header>
 
-<main class="container main page_panier">
-    <h1 class="panier_title">Votre commande est confirmée.</h1>
+<main class="container main page_order-confirmation">
+    <h1 class="order-confirmation_title"></h1>
+    <p class="order-confirmation_message">
+        Merci d'avoir passé commande sur Orinoco. Votre commande est confirmée, vous recevrez votre colis sous 48h ouvrés.
+        <br/>
+    </p>
+    <div class="order-confirmation-recap">
+        <div class="order_informations">
+            <h2>Récapitulatif de la commande</h2>
+            <p class="order_date"></p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Informations du produit</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Prix total</th>
+                </tr>
+                </thead>
+                <tbody class="order_table">
+
+                </tbody>
+            </table>
+        </div>
 
 
+        <div class="order_delivery">
+            <h2>Informations de livraison</h2>
+            <div class="order_contact">
+                <p class="order_contact_name"></p>
+                <p class="order_contact_address"></p>
+                <p class="order_contact_city"></p>
+            </div>
+        </div>
+    </div>
 </main>
 
 </body>

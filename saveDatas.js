@@ -11,5 +11,3 @@ $(document).on('click', '.set-cart-info', function () {
     // We save the data in the localStorage
     localStorage.setItem('teddy_id', cartItems.toString());
 });
-
-

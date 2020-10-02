@@ -7,6 +7,7 @@ body {
 
 .container.main {
   margin-top: 150px;
+  margin-bottom: 50px;
   text-align: center; }
 
 .product_color_text {
@@ -285,5 +286,12 @@ input:invalid {
 
 input:valid {
   border: 1px solid black; }
+
+.page_order-confirmation .order_informations table {
+  margin: auto; }
+  .page_order-confirmation .order_informations table thead th {
+    padding: 0 25px; }
+.page_order-confirmation .order_delivery .order_contact p {
+  margin: 5px 0; }
 
 /*# sourceMappingURL=main.css.map */

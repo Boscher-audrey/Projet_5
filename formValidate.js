@@ -6,6 +6,8 @@ function formValidate() {
     var city = document.getElementById("city");
     var zip = document.getElementById("zip");
 
+    var order_id = orderNumber();
+
     var regex_string = /^(([\p{L}]+['-]?[ ]?|[\p{L}]+['-]?)+)$/u;
     var regex_email = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+?\.[a-zA-Z0-9-]+$/;
     var regex_address = /(\d+)?\,?\s?(bis|ter|quater)?\,?\s?(rue|avenue|boulevard|r|av|ave|bd|bvd|square|sente|impasse|cours|esplanade|allée|résidence|parc|rond-point|chemin|côte|place|cité|quai|passage|lôtissement|hameau)?\s([a-zA-Zà-ÿ0-9\s]{2,})+$/gi;
@@ -38,17 +40,26 @@ function formValidate() {
         return false;
     } else {
         var contact = {
-            lastname:lastname.value,
-            firstname:firstname.value,
-            email:email.value,
-            address:address.value,
-            city:city.value,
-            zip:zip.value
+            lastname: lastname.value,
+            firstname: firstname.value,
+            email: email.value,
+            address: address.value,
+            city: city.value,
+            zip: zip.value,
+            order_id: order_id,
         };
         var obj = JSON.stringify(contact);
-        sessionStorage.setItem('contact', obj);
+        localStorage.setItem('contact', obj);
         return true;
     }
 
+}
+
+function orderNumber() {
+    var now = Date.now().toString();
+    // pad with extra random digit
+    now += now + Math.floor(Math.random() * 10);
+    // format
+    return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('-');
 }
 

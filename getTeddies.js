@@ -72,7 +72,6 @@ $(document).ready(function () {
             var split_products = cart_products.split(',');
             var count_products = countProducts(split_products, ID._id);
 
-
             if (count_products > 0) {
                 var price_products = price * count_products;
                 $('.panier_content').append('<tr class="product_in_cart ' + ID._id + '"></tr>');
@@ -85,12 +84,47 @@ $(document).ready(function () {
 
                 total_price_products += price_products;
             }
+
+
         }); //end foreach
 
-        $('.panier_content').append('<tr class="total_in_cart"></tr>');
+        $('.panier_content').append('<tr class="total_in_cart"><td></td><td></td><td></td><td></td></tr>');
         $('.total_in_cart').append('<td class="total_in_cart_price"><p>Prix total : ' + total_price_products + '.00€</p></td>');
+        // Page panier END
 
+        // Page confirmation de commande START
+        var contact = localStorage.getItem('contact');
+        var orderInfos = JSON.parse(contact);
 
+        var date = new Date().toLocaleDateString('fr');
+
+        $('.order-confirmation_title').append('Orinoco vous remercie pour votre commande n°' + orderInfos.order_id);
+        $('.order-confirmation_message').append('Vous trouverez ci-dessous un récapitulatif de votre commande qui vous a également été envoyé par mail à l\'adresse ' + orderInfos.email);
+        $('.order_date').append('Commande passée le ' + date);
+        IDs.forEach(function (ID) {
+            var cart_products = localStorage.getItem('teddy_id');
+            var split_products = cart_products.split(',');
+            var count_products = countProducts(split_products, ID._id);
+            var price = getNumberWithCommas(ID.price);
+            var price_products = price * count_products;
+
+            if (count_products > 0) {
+                $('.order_table').append('<tr class="order_product_info ' + ID._id + '"><td>' + ID.name + '</td></tr>');
+                $('.order_product_info' + '.' + ID._id).append('<td>' + count_products + '</td>');
+                $('.order_product_info' + '.' + ID._id).append('<td>' + price + '€ </td>');
+                $('.order_product_info' + '.' + ID._id).append('<td>' + price_products + '.00€ </td>');
+            }
+        }); //end foreach
+
+        $('.order_table').append('<tr><td></td></tr><tr><td></td></tr>');
+        $('.order_table').append('<tr class="order_total_price"><td></td><td></td></tr>');
+        $('.order_total_price').append('<td><i>Prix total de la commande :</i></td>');
+        $('.order_total_price').append('<td><i>' + total_price_products + '.00€</i></td>');
+
+        $('.order_contact_name').append(orderInfos.firstname + ' ' + orderInfos.lastname);
+        $('.order_contact_address').append(orderInfos.address);
+        $('.order_contact_city').append(orderInfos.zip + ' ' + orderInfos.city);
+        // Page confirmation de commande END
 
     }).catch(function (err) {
         $('.container.main').load('error.html');
