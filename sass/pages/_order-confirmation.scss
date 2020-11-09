@@ -1,0 +1,19 @@
+.page_order-confirmation {
+  .order_informations {
+    table {
+      margin: auto;
+      thead {
+        th {
+          padding: 0 25px;
+        }
+      }
+    }
+  }
+  .order_delivery {
+    .order_contact {
+      p {
+        margin: 5px 0;
+      }
+    }
+  }
+}

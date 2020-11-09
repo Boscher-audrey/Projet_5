@@ -12,7 +12,7 @@ $(document).ready(function () {
                 }
             });
             req.addEventListener("error", function () {
-                console.error("Erreur réseau avec l'URL " + url);
+                console.error("Erreur réseau avec l'URL " + url + ". Veuillez vérifier que la connexion avec le server distant fonctionne correctement.");
             });
             req.send(null);
         })
@@ -88,8 +88,10 @@ $(document).ready(function () {
 
         }); //end foreach
 
+
         $('.panier_content').append('<tr class="total_in_cart"><td></td><td></td><td></td><td></td></tr>');
         $('.total_in_cart').append('<td class="total_in_cart_price"><p>Prix total : ' + total_price_products + '.00€</p></td>');
+        $('.total_in_cart').append('<td class="empty_cart"><button onClick="window.location.reload()" class="empty_cart">Vider le panier</button></td>');
         // Page panier END
 
         // Page confirmation de commande START
@@ -169,4 +171,10 @@ $(document).on('click', '.remove_qty', function () {
         return false;
     });
     localStorage.setItem('teddy_id', cartItems.toString());
+});
+
+
+$(document).on('click', '.empty_cart', function () {
+   //localStorage.clear();
+    localStorage.setItem('teddy_id', "");
 });
